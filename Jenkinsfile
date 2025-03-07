@@ -1,6 +1,7 @@
 pipeline {
 
 
+
     environment {
         MY_ENV_VAR = "Hello, Jenkins!"
     }
