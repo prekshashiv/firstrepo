@@ -15,6 +15,22 @@ agent any
                 echo "The value of MY_ENV_VAR is: $env.MY_ENV_VAR"
             }
         }
+stage
+{
+parallel{
+        stage("build"){
+steps{
+echo "parallel build"
+}
+}
+stage("test")
+{
+steps{
+echo "parallel test"
+}
+}
+
+}
     }
 }
 
