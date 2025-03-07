@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
+    environment {
+        MY_ENV_VAR = "Hello, Jenkins!"
+    }
+
     stages {
-        stage("Reading properties from properties file") {
+        stage("Print Environment Variable") {
             steps {
-                script {
-                    def props = readProperties file: 'extravars.properties'
-                    env.Username = props.Username
-                }
-                echo "The username is $env.Username"
+                echo "The value of MY_ENV_VAR is: $env.MY_ENV_VAR"
             }
         }
     }
