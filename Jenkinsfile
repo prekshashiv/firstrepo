@@ -1,8 +1,5 @@
 pipeline {
-agent any
-
-
-
+    agent any
 
     environment {
         MY_ENV_VAR = "Hello, Jenkins!"
@@ -10,27 +7,26 @@ agent any
 
     stages {
         stage("Print Environment Variable") {
-     agent any     
-  steps {
+            steps {
                 echo "The value of MY_ENV_VAR is: $env.MY_ENV_VAR"
             }
         }
-stage
-{
-parallel{
-        stage("build"){
-steps{
-echo "parallel build"
-}
-}
-stage("test")
-{
-steps{
-echo "parallel test"
-}
-}
 
-}
+        stage("Parallel Execution") {
+            parallel {
+                stage("Build") {
+                    steps {
+                        echo "Parallel build"
+                    }
+                }
+
+                stage("Test") {
+                    steps {
+                        echo "Parallel test"
+                    }
+                }
+            }
+        }
     }
 }
-}
+
